@@ -265,3 +265,77 @@ DETAIL:  Ключ "(id_role, id_user)=(1, 6)" уже существует.).
 2015-05-31T13:26:52+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
 2015-05-31T16:51:04+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
 2015-06-03T00:46:07+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-07T16:02:41+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option(ОШИБКА:  неверное значение для перечисления yorn: "89").  
+2015-06-07T16:02:41+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option(ОШИБКА:  неверное значение для перечисления yorn: "89").  
+2015-06-07T16:02:41+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option(ОШИБКА:  неверное значение для перечисления yorn: "89").  
+2015-06-12T22:38:54+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-13T01:21:12+04:00 ERROR [QuestionDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuestionDAO.php]: 66: Ошибка удаления строки в таблице: questions().  
+2015-06-13T13:06:14+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-13T23:10:48+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем тестируем13.  
+2015-06-13T23:11:35+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option().  
+2015-06-13T23:11:45+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option().  
+2015-06-13T23:12:01+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-13T23:12:11+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option().  
+2015-06-13T23:22:07+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option().  
+2015-06-13T23:24:22+04:00 ERROR [AnswerOptionsDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AnswerOptionsDAO.php]: 27: Ошибка добавления строки в таблице: answer_option().  
+2015-06-13T23:29:57+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем тестируем13.  
+2015-06-13T23:31:16+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-14T13:18:28+04:00 ERROR [QuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 33: Ошибка добавления строки в таблицу: test(ОШИБКА:  неверный синтаксис для типа interval: "367 мин.").  
+2015-06-14T14:12:48+04:00 ERROR [AdministrationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\UserDAO.php]: 63: Ошибка удаления строки в таблице: alluser( ОШИБКА:  UPDATE или DELETE в таблице "alluser" нарушает ограничение внешнего ключа "author_test_fkey" таблицы "test"
+DETAIL:  На ключ (id_user)=(9) всё ещё есть ссылки в таблице "test".).  
+2015-06-16T10:04:19+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(53) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T10:14:02+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(53) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T10:15:22+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(53) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T10:35:41+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(53) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T10:46:01+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(53) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T10:46:13+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(53) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T16:17:09+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(26) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T17:33:04+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(24) всё ещё есть ссылки в таблице "questions".).  
+2015-06-16T17:33:12+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(24) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:22:39+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(13) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:22:43+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(9) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:22:49+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_interviewees_fkey" таблицы "interviewees"
+DETAIL:  На ключ (id_test)=(1) всё ещё есть ссылки в таблице "interviewees".).  
+2015-06-17T00:22:55+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_interviewees_fkey" таблицы "interviewees"
+DETAIL:  На ключ (id_test)=(1) всё ещё есть ссылки в таблице "interviewees".).  
+2015-06-17T00:24:19+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(16) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:24:39+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(22) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:25:06+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(26) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:25:40+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(29) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:25:47+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(34) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:25:52+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(36) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T00:25:56+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_questions_fkey" таблицы "questions"
+DETAIL:  На ключ (id_test)=(6) всё ещё есть ссылки в таблице "questions".).  
+2015-06-17T01:21:58+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-17T10:55:50+04:00 ERROR [IntervieweeDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\IntervieweeDAO.php]: 218: Ошибка запроса к таблице: testing(ОШИБКА:  колонка "vasibility_test" не существует
+LINE 1: ...ct id_test from interviewees where id_user=$1 and vasibility...
+                                                             ^).  
+2015-06-17T14:10:08+04:00 ERROR [TestingDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\TestingDAO.php]: 25: Ошибка добавления строки в таблицу: testing( ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "must_be_different_testing"
+DETAIL:  Ключ "(id_user, id_test)=(1, 57)" уже существует.).  
+2015-06-17T14:11:32+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-17T14:11:58+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-17T14:40:10+04:00 ERROR [TestingDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\TestingDAO.php]: 25: Ошибка добавления строки в таблицу: testing( ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "must_be_different_testing"
+DETAIL:  Ключ "(id_user, id_test)=(1, 12)" уже существует.).  
+2015-06-17T14:43:01+04:00 ERROR [IntervieweeDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\IntervieweeDAO.php]: 220: Ошибка запроса к таблице: testing(ОШИБКА:  таблица "test" отсутствует в предложении FROM
+LINE 1: select test.id_test from interviewees
+               ^).  
+2015-06-17T14:47:24+04:00 INFO [AuthorizationDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\AuthorizationDAO.php]: 70: Успешно введены логин и пароль пользователем Иван.  
+2015-06-17T14:52:25+04:00 ERROR [AuthorQuizDAO] [Z:\home\localhost\www\NetBeans\PhpPrimer1\DAO\QuizDAO.php]: 68: Ошибка удаления строки в таблице: test(ОШИБКА:  UPDATE или DELETE в таблице "test" нарушает ограничение внешнего ключа "test_interviewees_fkey" таблицы "interviewees"
+DETAIL:  На ключ (id_test)=(57) всё ещё есть ссылки в таблице "interviewees".).  

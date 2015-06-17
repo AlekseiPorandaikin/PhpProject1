@@ -13,193 +13,104 @@
                         </form>
     <table width="100%">
             <tr>
-                <td  width="100%">
+                 <td colspan=""  width="100%">
                     {include file='header.tpl'}
                 </td>
             </tr>
             <tr>
                 <td>
                     {capture name="new_testing"}
-                        <table width="100%" >
-                            <tr>                        
-                                <td width="30%" valign="top">
-                                    {include file='menu.tpl'}
+                        <table width="100%">
+                            <tr>
+                                <td width="20%" valign="top">
+                            {include file='menu.tpl'}
+                                </td>    
+                                <td>
+                                    <table align="center">
+                            <tr>
+                                <td colspan="2">
+                                    Начать новый тест
                                 </td>
-                                <td width="70%">
-                                        <table width="60%" align="center">
-                                            <tr>
-                                                <td colspan='2'>
-                                                    <h2>Информация по тесту</h2>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Тема теста:
-                                                </td>
-                                                <td>
-                                                   {$data_test->getTopic()}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Ограничение по времени
-                                                </td>
-                                                <td>
-                                                    {if $data_test->getTimeLimit()=="" && $data_test->getTimeLimit()==NULL}
-                                                        Без ограничения времени
-                                                    {/if}    
-                                                </td>
-                                            </tr>  
-                                            <tr>
-                                                <td>
-                                                    Комментарий автора
-                                                </td>
-                                                <td>
-                                                     {$data_test->getCommentQuiz()}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Результат
-                                                </td>
-                                                <td>
-                                                    {if $data_test->getSeeTheResult()=='Y'}
-                                                        Разрешено просматривать результат<br>
-                                                    {/if}   
-                                                    {if $data_test->getSeeDetails()=='Y'}
-                                                        Разрешено просматривать детальны отчёт
-                                                    {/if} 
-                                                    {if $data_test->getSeeDetails()=='N' || $data_test->getSeeTheResult()=='N'}
-                                                        Запрещено просматривать результат
-                                                    {/if} 
-                                                </td>    
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Автор теста
-                                                </td>
-                                                <td>
-                                                    {$data_test->getAuthorTest()->getLastName()}
-                                                    {$data_test->getAuthorTest()->getFirstName()}
-                                                </td>    
-                                            </tr>
-                                            <tr>
-                                                <td colspan='2' align='center'>
-                                                    <button form="test_passing" type="submit" formaction="quiz.php" name="button_click" value='start_quiz'>Начать тест</button>
-                                                </td>
-                                            </tr>
-                                        </table>
+                            </tr>
+                            <tr>
+                                <td width="40%">
+                                    Тема теста
                                 </td>
-                            </tr>    
-                        </table>            
+                                <td width="60%">
+                                    {$data_one_quiz->topic}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Ограничение времени
+                                </td>
+                                <td>
+                                    {if {$data_one_quiz->time_limit}==""}
+                                        Без ограничений
+                                    {else}
+                                        {$data_one_quiz->time_limit}
+                                    {/if}    
+                                </td>                                    
+                            </tr>
+                            <tr>
+                                <td>
+                                    Комментарий автора
+                                </td>
+                                <td>
+                                    {$data_one_quiz->comment_test}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Результат
+                                </td>
+                                <td>
+                                    {if $data_one_quiz->see_the_result=='Y'}
+                                        Разрешено просматривать результат<br>
+                                    {/if}   
+                                    {if $data_one_quiz->see_details=='Y'}
+                                        Разрешено просматривать детальный отчёт
+                                    {/if} 
+                                    {if $data_one_quiz->see_details=='N' || $data_one_quiz->see_the_result=='N'}
+                                        Запрещено просматривать результат
+                                    {/if} 
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <form method="post">
+                                    <button type="submit" formaction="quiz.php?status=new_test&id_test={$data_one_quiz->id_test}" name="button_click" value="start_test">Начать тест</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                                </td>
+                            </tr>
+                        </table>
+                                
                     {/capture}
                     {capture name="continue_testing"}
-                        <table width="100%" >
-                            <tr>                        
-                                <td width="30%" valign="top">
-                                    <table>
+                        <table width="100%">
+                            <tr>
+                                <td width="30%">
+                                    <table width="100%">
+                                    {foreach $array_questions as $one_question}
                                         <tr>
                                             <td>
-                                                Вопросы
+                                                <a href="javascript: void(0);" onclick="console.log({$one_question->getIdQuestion()})">Вопрос № {$one_question->getIdQuestion()}</a>
                                             </td>
                                         </tr>
-                                        {foreach $data_questions as $question}
-                                                <tr>
-                                                    <td>                                                        
-                                                        <a href='quiz.php?id_question={$question["data_questions"]->getIdQuestion()}'>Вопрос № {$question['number']}</a>
-                                                    </td>
-                                                </tr>
-                                        {/foreach}
+                                    {/foreach}
                                     </table>
                                 </td>
                                 <td width="70%">
-                                    <table>
-                                        <tr>
-                                            <th>
-                                                Тема теста: {$data_test->getTopic()}
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Вопрос №  {$data_one_question["number"]}                                              
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               {$data_one_question["data_questions"]->getTextQuestion()}                                            
-                                            </td>
-                                        </tr> 
-                                        <form id="question" method="post">
-                                        <tr>
-                                            <td>
-                                                
-                                               {capture name='radio'}                     
-                                                      <p><input type="radio" name="Y" value="a1">Да<Br>
-                                                      <input type="radio" name="N" value="a2">Нет<Br>
-                                                      <input type="radio" name="N" value="a3">Не знаю</p>
-                                                {/capture}
-                                                {capture name='radio_list'}       
-                                                      <input type="radio" name="answer" value="a">var</p>                                                   
-                                                {/capture}
-                                                {capture name='checkbox_list'}
-                                                       <input type="checkbox" name="option1" value="a1">var<Br>  
-                                                {/capture}
-                                                {capture name='textarea'}
-                                                       <textarea name="comment" maxlength="1000" cols="80" rows="10"></textarea></p>                          
-                                                   
-                                                {/capture}
-                                                {if {$data_one_question["data_questions"]->getIdQuestionsType()} eq '1'}
-                                                    {$smarty.capture.radio}    
-                                                {elseif {$data_one_question["data_questions"]->getIdQuestionsType()} eq '2'}
-                                                    {$smarty.capture.radio_list}
-                                                {elseif {$data_one_question["data_questions"]->getIdQuestionsType()} eq '3'}
-                                                    {$smarty.capture.checkbox_list}
-                                                {elseif {$data_one_question["data_questions"]->getIdQuestionsType()} eq '4'}
-                                                    {$smarty.capture.textarea}
-                                                {/if} 
-                                                
-                                         
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="submit" value="ответить">
-                                                <input type="submit" value="пропустить">
-                                            </td>                                             
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <button type="submit" formaction="quiz.php" name="button_click" value='end_quiz'>Закончить тест</button>
-                                            </td>                                             
-                                        </tr>
-                                        </form>
-                                    </table>
+                                    Прохождение теста
                                 </td>
                             </tr>
                         </table>
                     {/capture} 
                     {capture name="end_quiz"}
-                        <table width="100%" >
-                            <tr>                        
-                                <td width="30%" valign="top">
-                                    {include file='menu.tpl'}
-                                </td>
-                                <td width="70%">
-                                        <table width="60%" align="center">
-                                            <tr>
-                                                <td>
-                                                    Вы завершили тест
-                                                </td>
-                                            </tr>    
-                                            <tr>
-                                                <td>
-                                                    <a hre="main.php">Перейти на главную страницу</a>
-                                                </td>
-                                            </tr> 
-                                        </table>
-                                </td>
-                            </tr>    
-                        </table>  
+                       законченный тест
                     {/capture}    
                     {if {$status_testing} eq 'new_testing'}
                         {$smarty.capture.new_testing}

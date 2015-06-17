@@ -1,4 +1,4 @@
-<table width="100%"  bgcolor="#708090" >
+                    <table width="100%"  bgcolor="#708090" >
                         <tr >
                             <td width="70%" height="70" align="center">
                                 <h2>Автоматическая система тестирования</h2>

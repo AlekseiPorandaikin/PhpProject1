@@ -7,6 +7,7 @@ include_once 'model/MUser.php';
 include_once 'DAO/UserDAO.php';
 include_once 'DAO/AnswerOptionsDAO.php';
 include_once 'model/MAnswerOptions.php';
+include_once 'DAO/QuestionDAO.php';
 class CreateQuizView{
     public $id_author; //ид составителя опроса
     public $id_quiz; // Ид опроса: создавемого или редактируемого
@@ -80,6 +81,21 @@ class CreateQuizView{
             elseif ($this->button_click == 'add_answer_option_one'){  
                 $this->addAnswerQuestion();
             }
+            elseif ($this->button_click == 'delete_question'){  
+                $question_dao = new QuestionDAO();
+                $question_dao->deleteQuestion($_GET['id_question']);
+            }
+            elseif ($this->button_click == 'add_interviewees'){
+                $user = new UserDAO();
+                $temp_array = $_POST['new_user_interviwees_some'];
+                foreach ($temp_array as $v){                    
+                    $name= explode(" ", $v);
+                    $id_user = $user->getIdUserOnFI($name[0], $name[1]);
+                    $this->mauthor->setIdTest($this->id_quiz);
+                    $this->mauthor->setIdUser($id_user);
+                    $this->author->addInterviewee($this->mauthor);
+                }
+            }
         }
     }    
     public function createQuiz(){
@@ -94,16 +110,16 @@ class CreateQuizView{
         if($_POST['time_limit']=='N'){
             $_POST['set_time_limit']=null;
         }        
-        $mquiz->setTimeLimit($_POST['set_time_limit']);
+        $mquiz->setTimeLimit($_POST['set_time_limit']*60);
         $mquiz->setCommentQuiz($_POST['comment_test']);
         $mquiz->setSeeTheResult($_POST['see_the_result']);
         $mquiz->setSeeDetails($_POST['see_details']);
         $mquiz->setIdStatusQuiz($_POST['status_test']);
         $_SESSION['id_quiz'] = $quiz->createQuiz($mquiz, $muser);
         $this->id_quiz = $_SESSION['id_quiz'];
-        $this->addAnswerQuestion();
+//        $this->addAnswerQuestion();
     }
-    public function addQuestion(){ 
+    public function addQuestion(){
         unset($_SESSION['id_question']);
         $mquestion= new MQuestion();
         $question= new QuestionDAO();
@@ -112,17 +128,43 @@ class CreateQuizView{
         $mquestion->setIdQuestionsType($_POST['question_type']);
         $mquestion->setIdTest($this->id_quiz);     
         $_SESSION['id_question'] = $question->createQuestion($mquestion);
+        $this->id_question = $_SESSION['id_question'];
         if ($_POST['question_type'] == 1){
             $this->addAnswerQuestion($this->id_question, $_POST['add_answer_type_yorn'], 'Y');
             header("Location: create_quiz.php?link_click=".$this->link_click."&action=menu_questions");
         }
         elseif ($_POST['question_type'] == 2){
+            for ($i=0; $i<count($_POST['answers']); $i++){
+                if ($_POST['answers'][$i] == $_POST['answer_the_question']){
+                    $this->addAnswerQuestion($this->id_question, $_POST['answers'][$i], 'Y');
+                }
+                else {
+                    $this->addAnswerQuestion($this->id_question, $_POST['answers'][$i], 'N');
+                }
+            }    
             header("Location: create_quiz.php?link_click=".$this->link_click."&action=menu_questions");
         }
         elseif ($_POST['question_type'] == 3){
+            $result = array();
+            for ($a=0; $a<count($_POST['answers_some']); $a++){
+                for ($b=0; $b<count($_POST['answer_some_the_question']); $b++){
+                    if ($_POST['answer_some_the_question'][$b] == $_POST['answers_some'][$a]){
+                        $result[$a]['answer'] = $_POST['answers_some'][$a];
+                        $result[$a]['rao'] = 'Y';
+                        break;
+                    }
+                    else {
+                        $result[$a]['answer'] = $_POST['answers_some'][$a];
+                        $result[$a]['rao'] = 'N';
+                    }
+                }
+            }            
+            foreach ($result as $v){
+                $this->addAnswerQuestion($this->id_question, $v["answer"], $v["rao"]);
+            }
             header("Location: create_quiz.php?link_click=".$this->link_click."&action=menu_questions");
         }
-        elseif ($_POST['question_type'] == 4){
+        elseif ($_POST['question_type'] == 4){            
             header("Location: create_quiz.php?link_click=".$this->link_click."&action=menu_questions");
         }
     }
@@ -142,14 +184,12 @@ class CreateQuizView{
     public function getOneDataQuiz(){
         return $this->author->getListObjQuiz($this->id_quiz);
     }
-    public function addAnswerQuestion(){
-        if(!empty($this->id_question) && !empty($_POST['answer_the_question'])){
-            $manswer_option=new MAnswerOptions();
-            $manswer_option->setIdQuestion($this->id_question);
-            $manswer_option->setAnswerTheQuestions($_POST['answer_the_question']);
-            $manswer_option->setRightAnswer('N'); //Возможно переписать
-            $this->answer_option->createAnswerOptions($manswer_option);
-        }
+    public function addAnswerQuestion($id_question, $answer, $right_answer = 'N'){
+        $manswer_option=new MAnswerOptions();
+        $manswer_option->setIdQuestion($id_question);
+        $manswer_option->setAnswerTheQuestions($answer);
+        $manswer_option->setRightAnswer($right_answer); //Возможно переписать
+        $this->answer_option->createAnswerOptions($manswer_option);
         header("Location: create_quiz.php?link_click=".$this->link_click."&action=answer_option_one");
     }
     public function addRightAnswerQuestion(){

@@ -1,6 +1,6 @@
   
     {if {$data_role[2]} eq 3}
-            <table>
+            <table width="100%">
                 <tr bgcolor="#4682B4" valign="top">
                     <td width="50%" height="10%" align="left" bgcolor="#6CA6CD">
                         Меню администратора
@@ -19,7 +19,7 @@
             </table> 
             {/if}
     {if {$data_role[1]} eq 2}
-        <table>
+        <table width="100%">
             <tr bgcolor="#4682B4" valign="top">
                 <td width="50%" height="10%" align="left" bgcolor="#6CA6CD">
                     Меню автора теста
@@ -38,7 +38,7 @@
         </table>
         {/if}
     {if  {$data_role[0]} eq 1}
-        <table>
+        <table width="100%">
             <tr bgcolor="#4682B4" valign="top">
                 <td width="50%" height="10%" align="left" bgcolor="#6CA6CD">
                     Меню тестируемого

@@ -19,7 +19,7 @@ class AuthorQuizDAO  extends QuizDAO{
         }
     }
     public function getListQuiz(MAuthorQuiz $author){
-        $query="select id_test from test where author_test=$1;";
+        $query="select id_test from test where author_test=$1 order by date_create DESC;";
         $array_params=array();
         $array_params[]=$author->getIdUser();
         $result=$this->db->execute($query,$array_params);

@@ -52,13 +52,13 @@ class QuestionDAO {
         }   
     }
     //Удаляет вопрос
-    public function deleteQuestion(MQuestion $questions){
+    public function deleteQuestion($id_question){
+        $this->deleteAnswerOptions($id_question);
+        $this->deleteAnswerUser($id_question);
         $query="DELETE FROM questions WHERE id_question=$1;";
         $array_params=array();
-        $array_params[]=$questions->getIdQuestion();
+        $array_params[]=$id_question;
         $result=$this->db->execute($query,$array_params);
-//        $this->deleteAnswerQuestion($questions);
-//        $this->deleteOptionAnswer($questions);
         if($result){
             return $result;            
         } 
@@ -66,6 +66,18 @@ class QuestionDAO {
             $this->log->ERROR('Ошибка удаления строки в таблице: questions('.pg_last_error().')'); 
 //            throw new Exception('Ошибка удаления строки в таблице: questions('.pg_last_error().')'); 
         }  
+    }
+    private function deleteAnswerOptions($id_question){
+        $query="DELETE FROM answer_options WHERE id_question=$1;";
+        $array_params=array();
+        $array_params[]=$id_question;
+        $this->db->execute($query,$array_params);
+    }
+    private function deleteAnswerUser($id_question){
+        $query="DELETE FROM answer_users WHERE id_question=$1;";
+        $array_params=array();
+        $array_params[]=$id_question;
+        $this->db->execute($query,$array_params);
     }
     //Возращает список вариантов ответа для вопроса
     public function getArrayIdOptions($id_question){

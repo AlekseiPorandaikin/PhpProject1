@@ -180,10 +180,36 @@ class UserDAO {
            return $obj->id_user;
     }
     public function searchUser($name){
-        $query = "select * from alluser where last_name like '%".$name."%';";
+        $result = array(); 
+        $array_id = $this->searchUserId($name);
+        foreach($array_id as $id){
+            $temp=$this->searchUserData($id);
+            $temp_array['id_user'] = $temp->id_user;
+            $temp_array['name'] = trim($temp->last_name)." ".trim($temp->first_name);
+            $result[]=$temp_array;
+        }
+        return $result;
+        
+    }
+    public function searchUserId($name){
+        $query = "select id_user from alluser where last_name like '%".$name."%';";
+        $result_query=$this->db->execute($query);
+        return $this->db->getArrayData($result_query);
+    }
+    public function searchUserData ($id_user){
+        $query = "select * from alluser where id_user=".$id_user.";";
         $result_query=$this->db->execute($query);
         $obj=$this->db->getFetchObject($result_query);
-        return $query;
+        return $obj;
+    }
+    public function getIdUserOnFI($last_name, $first_name){
+        $query="select id_user from alluser where last_name=$1 and first_name=$2;";
+           $array_params=array();
+           $array_params[]=$last_name;
+           $array_params[]=$first_name;
+           $result_query=$this->db->execute($query, $array_params);
+           $obj=$this->db->getFetchObject($result_query);
+           return $obj->id_user;
     }
 }
 ?>

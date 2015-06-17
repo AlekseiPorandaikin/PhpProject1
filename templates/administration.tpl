@@ -2,7 +2,7 @@
     <head>
         <title>{$title}</title>
         <meta charset="UTF-8">
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="js/source_internet/jsapi"></script>
         <script src="js/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="css/styles.css">
     </head>
@@ -36,6 +36,7 @@
             }
             function checkEmailUser(value){
                 $.post("checkForms.php", { action: "check", field: "email user", name: value }, function( data ) {
+                    console.log(data);
                 if(data=='true'){
                     $("#yes_email").show();
                     $(".unsuitable").show();
@@ -68,11 +69,9 @@
                         return true;
                 } else {
                         return false;
+                }
             }
-}
         </script> 
-        <div class="wrapper">
-            <div class="content">
         <table width="100%">
             <tr>
                 <td  width="100%">
@@ -84,13 +83,13 @@
                 <table width="100%" >
                     <tr>                        
                 <td width="20%" valign="top">
-                    {include file='menu.tpl'}
-                </td>           
+                            {include file='menu.tpl'}
+                </td>          
                 <td width="80%">
-                    <form id="go" method="post">
-                    </form>
+                <form id="go" method="post">
+                        </form>
                     {capture name='table_users'}
-                        <a href="administration.php?link_click=new_internal_user" title="Создать внутреннего пользователя"><img class="icon_on_page" src="img/add-user.png">Создать внутреннего пользователя</a>
+                        <a href="administration.php?link_click=new_user&&type_user=internal_user"><img src="img/icon/add-user.png" width="50px" height="50px"></a>
                         <table width="80%" align="center">
                             <tr>
                                 <td>
@@ -126,14 +125,14 @@
                                     </td>
                                     <td>
                                         {if $one_user_data->getUserVasibility()==1}
-                                            Активный
+                                            <img src="img/icon/unlock.png" width="50px" height="50px">
                                         {else}
-                                            Неактивный
+                                            <img src="img/icon/lock.png" width="50px" height="50px">
                                         {/if}    
                                     </td>
                                     <td>
                                         {if $one_user_data->getLdapUser()==0}
-                                            <a href="administration.php?link_click=edit_user&id_user={$one_user_data->getIdUser()}" title="Изменить пользователя"><img class="icon_on_page" src="img/edit-user.png"></a>
+                                            <a href="administration.php?link_click=edit_user&&id_user={$one_user_data->getIdUser()}"><img src="img/icon/edit-user.png" width="50px" height="50px"></a>
                                         {/if}
                                     </td>
                                 </tr>
@@ -179,14 +178,14 @@
                                     </td>                                    
                                     <td>
                                         {if $one_quiz_data->getVasibilityTest()==1}
-                                            Тест доступен 
+                                            <img src="img/icon/unlock.png" width="50px" height="50px">
                                         {else}
-                                            Тест заблокирован
+                                            <img src="img/icon/lock.png" width="50px" height="50px">
                                         {/if}   
                                     </td>
                                     <td>
                                             {if $one_quiz_data->getVasibilityTest()==1}
-                                                <button type="submit" formaction="administration.php?link_click=show_quiz" name="deactivate_quiz" value="{$one_quiz_data->getIdQuiz()}">Заблокировать тест</button>                                           
+                                                <button type="submit" formaction="administration.php?link_click=show_quiz" name="deactivate_quiz" value="{$one_quiz_data->getIdQuiz()}">Заблокировать тест</button>
                                             {else}
                                                 <button type="submit" formaction="administration.php?link_click=show_quiz" name="activate_quiz" value="{$one_quiz_data->getIdQuiz()}">Активировать тест</button>
                                             {/if}      
@@ -246,15 +245,19 @@
                             </form>
                             
                     {/capture}
-                    {capture name='edit_user'}   
-                        {if $id_user != NULL}
+                    {capture name='new_ldap_user'}
+                        Пользователь LDAP
+                    {/capture}
+                    {capture name='edit_user'}
+                        {foreach $users_data as $one_user_data}
+                            {if $one_user_data->getIdUser()==$id_edit_user}
                                 <form action="administration.php" method="POST">
                                     <input type="hidden" name="button_click" value="edit_user">
-                                    <input type="hidden" name="id_user" value="{$id_user}">
+                                    <input type="hidden" name="id_user" value="{$id_edit_user}">
                                     <table align="center">
                                         <tr>
                                             <td colspan="2" align="center">
-                                                {if $data_edit_user->getUserVasibility()==1}                                                    
+                                                {if $one_user_data->getUserVasibility()==1}                                                    
                                                     <p><font size="4" color="blue" face="Arial">Активный пользователь</font>   
                                                 {else}
                                                     <p><font size="4" color="red" face="Arial">Неактивный пользователь</font>                                                    
@@ -263,24 +266,24 @@
                                         </tr>
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Фамилия </td>
-                                            <td><input type="text" name="last_name"  value="{$data_edit_user->getLastName()}" required><td>
+                                            <td><input type="text" name="last_name"  value="{$one_user_data->getLastName()}" required><td>
                                         </tr>
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Имя </td>
-                                            <td><input type="text" name="first_name" value="{$data_edit_user->getFirstName()}" required><td>
+                                            <td><input type="text" name="first_name" value="{$one_user_data->getFirstName()}" required><td>
                                         </tr>                                
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Email</td>
-                                            <td><input type="email" name="email" value="{$data_edit_user->getEmail()}" required><td>
+                                            <td><input type="email" name="email" value="{$one_user_data->getEmail()}" required><td>
                                         </tr>
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Логин</td>
-                                            <td><input type="text" name="login" value="{$data_edit_user->getLogin()}"  required><td>
+                                            <td><input type="text" name="login" value="{$one_user_data->getLogin()}"  required><td>
                                         </tr>                                
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Роль пользователя</td>
                                             <td>
-                                                {$array=$data_edit_user->getRoles()}
+                                                {$array=$one_user_data->getRoles()}
                                                 {if $array[0]==1}
                                                     <input type="checkbox" name="role_admin" value="1" checked>Опрашиваемый <br>
                                                 {else}
@@ -301,7 +304,7 @@
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Изменить пароль</td>
                                             <td>
-                                                <input type="radio" name="reset_password" value="Yes" onchange = 'setNewPassword((this.getAttribute("value")));'>да</br>
+                                                <input type="radio" name="reset_password" value="Yes" onchange = 'setNewPassword((this.getAttribute("value")))'>да</br>
                                                 <input type="radio" name="reset_password" value="No" onchange = 'setNewPassword((this.getAttribute("value")))' checked>нет</br>
                                                 <div class="enter_new_password" style="display: none">
                                                     Установить пароль: <br><input type="text" name="set_new_password" id="set_new_password" value="***" required>
@@ -310,19 +313,19 @@
                                         </tr> 
                                         <tr>
                                             <td>
-                                                <button type="submit" formaction="administration.php" name="update_user" value={$id_user}>Изменить пользователя</button>
+                                                <button type="submit" formaction="administration.php" name="update_user" value={$id_edit_user}>Изменить пользователя</button>
                                            </td>
                                            <td>
-                                               <button type="submit" formaction="administration.php" name="delete_user" value="{$id_user}" onclick="return confirmDelete();" title='При удалении пользователя, также удалиться вся зависимая информация представленная внизу в Дополнительной информации'>Удалить пользователя</button>
+                                               <button type="submit" formaction="administration.php" name="delete_user" value="{$id_edit_user}" onclick="return confirmDelete();" title='При удалении пользователя, также удалиться вся зависимая информация представленная внизу в Дополнительной информации'>Удалить пользователя</button>
                                                
                                            </td>    
                                         </tr>
                                         <tr>
                                             <td>
-                                                {if $data_edit_user->getUserVasibility()==1}
-                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user={$id_user}" name="deactivate_user" value="{$id_user}">Заблокировать пользователя</button>
+                                                {if $one_user_data->getUserVasibility()==1}
+                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user={$id_edit_user}" name="deactivate_user" value="{$id_edit_user}">Заблокировать пользователя</button>
                                                 {else}
-                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user={$id_user}" name="activate_user" value="{$id_user}">Активировать пользователя</button>
+                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user={$id_edit_user}" name="activate_user" value="{$id_edit_user}">Активировать пользователя</button>
                                                 {/if}                                                 
                                             </td>
                                                 <td>
@@ -387,8 +390,11 @@
                                                     </table>
                                                     {else} Пользователь не активировал тесты
                                                 {/if} 
-                                            </div>     
-                        {/if}                    
+                                            </div>    
+                                 
+                            {/if}
+                        {/foreach}
+                        
                     {/capture}
                 {if {$view_admin} eq 'table_users'}
                    {$smarty.capture.table_users}
@@ -398,6 +404,8 @@
                     {$smarty.capture.edit_user}
                 {elseif {$view_admin} eq 'new_internal_user'}
                     {$smarty.capture.new_internal_user}
+                {elseif {$view_admin} eq 'new_ldap_user'}
+                    {$smarty.capture.new_ldap_user}
                  {/if}   
                 </td>
                     </tr> 
@@ -405,8 +413,6 @@
                 </td>  
             </tr>            
         </table>
-                </div>
         {include file='footer.tpl'}
-        </div>
     </body>
 </html>

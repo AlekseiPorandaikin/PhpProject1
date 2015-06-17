@@ -2,7 +2,7 @@
     <head>
         <title>{$title}</title>
         <meta charset="UTF-8">
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="js/source_internet/jsapi"></script>
         <script src="js/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="css/styles.css">
     </head>
@@ -21,10 +21,10 @@
                 <td>
                 <table width="100%" >
                     <tr>                        
-                        <td width="30%" valign="top">
+                        <td width="20%" valign="top">
                             {include file='menu.tpl'}
                         </td>
-                        <td width="70%">
+                        <td width="80%">
                             <table>
                                 <tr>
                                     <td>
@@ -48,14 +48,14 @@
                                                                     Доступен
                                                                 </td>
                                                                 <td>
-                                                                    <a href="quiz.php?status=available&testing={$data_one_quiz['testing']->getIdTesting()}">Пройти тест</a>
+                                                                    <a href="quiz.php?status=available&id_testing={$data_one_quiz['testing']->getIdTesting()}">Пройти тест</a>
                                                                 </td>
                                                             {elseif $data_one_quiz['testing']->getMarkTest()==2}
                                                                  <td>
                                                                     Неоконченный
                                                                 </td>
                                                                 <td>
-                                                                    <a href="quiz.php?status=unfinished&testing={$data_one_quiz['testing']->getIdTesting()}">Продолжить тест</a>
+                                                                    <a href="quiz.php?status=unfinished&id_testing={$data_one_quiz['testing']->getIdTesting()}">Продолжить тест</a>
                                                                 </td>
                                                             {elseif $data_one_quiz['testing']->getMarkTest()==3}
                                                                 <td>
@@ -77,7 +77,7 @@
                                                                     Вы еще не открывали этот тест
                                                                 </td>
                                                                 <td>                                                                
-                                                                   <a href="quiz.php?status=new_test&testing={$data_one_quiz['quiz']->id_test}">Начать тест</a>
+                                                                   <a href="quiz.php?status=new_test&id_test={$data_one_quiz['quiz']->id_test}">Начать тест</a>
                                                                 </td>
                                                         {/if}   
                                                 </tr>

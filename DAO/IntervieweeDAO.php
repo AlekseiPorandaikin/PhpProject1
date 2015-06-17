@@ -22,7 +22,7 @@ class IntervieweeDAO {
     public function statusStartQuiz(MInterviewee $interviewee){
         $return=$this->testing->createTesting($interviewee, 2);
         $this->testing->setDatetimeStartTest($interviewee, date("Y-m-d H:i:s"));
-        $this->setMarker($interviewee->getIdTesting(), $this->getFirstQuestion($interviewee->getTest()->getIdQuiz()));
+//        $this->setMarker($interviewee->getIdTesting(), $this->getFirstQuestion($interviewee->getTest()->getIdQuiz()));
         return $return;
     }
     //Закончить тест
@@ -207,7 +207,9 @@ class IntervieweeDAO {
     }
     //Отображаем список доступных тестов для данного пользователя
     public function getListQuiz($id_user){
-        $query="select id_test from interviewees where id_user=$1;";
+        $query="select test.id_test from interviewees
+                inner join test on interviewees.id_test = test.id_test
+                 where id_user=$1 and vasibility_test=1;";
         $array_params=array();
         $array_params[]=$id_user;
         $result=$this->db->execute($query,$array_params);

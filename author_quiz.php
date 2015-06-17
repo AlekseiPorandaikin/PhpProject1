@@ -5,11 +5,9 @@ include_once 'view/checkOnPage.php';
 include_once 'view/AuthorQuizView.php';
 //Обнуляем переменную
 unset($_SESSION['id_quiz']);
-$title="Меню автора тестов";
-$author_view=new AuthorQuizView($_SESSION['id_user']);
+$author_view=new AuthorQuizView();
 
-    $smarty->assign('title', $title);
-    $smarty->assign('you', $you);
+    $smarty->assign('title', $author_view->title);
     $smarty->assign('data_quiz',$author_view->getAuthorQuizs());
     
     $smarty->display('templates/author_quiz.tpl');

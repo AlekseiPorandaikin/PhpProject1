@@ -25,10 +25,11 @@ include_once 'model/MAnswerUser.php';
 include_once 'DAO/TestingDAO.php';
 
  try{ 
-    $array=  ConfigFile::getInstance();
-    echo "<pre>";
-    var_dump ($array->array_params["ParamsDike"]["max_time"]);
-    echo "</pre>";
+    $inter = new IntervieweeDAO();
+    $inter->getDataQuizTesting(1);
+//    echo "<pre>";
+//    var_dump($inter->getDataQuizTesting(1));
+//    echo "</pre>";
  } catch (Exception $ex) {
 
  }

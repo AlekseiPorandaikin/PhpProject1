@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-06-03 02:02:29
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-06-17 01:22:45
          compiled from "templates\administration.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:26616553c7fe07cf333-56964283%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:25805557b191cf22348-23133304%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0f4bb3d4e4d8e4cb0b378da26ca9015b44dffe24' => 
     array (
       0 => 'templates\\administration.tpl',
-      1 => 1433282545,
+      1 => 1434489763,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '26616553c7fe07cf333-56964283',
+  'nocache_hash' => '25805557b191cf22348-23133304',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_553c7fe1418130_17536914',
+  'unifunc' => 'content_557b1922e8ef58_21066301',
   'variables' => 
   array (
     'title' => 0,
@@ -24,8 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'one_user_data' => 0,
     'quizs_data' => 0,
     'one_quiz_data' => 0,
-    'id_user' => 0,
-    'data_edit_user' => 0,
+    'id_edit_user' => 0,
     'array' => 0,
     'other_data_user' => 0,
     'other_data_user_test' => 0,
@@ -34,13 +33,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_553c7fe1418130_17536914')) {function content_553c7fe1418130_17536914($_smarty_tpl) {?><html>
+<?php if ($_valid && !is_callable('content_557b1922e8ef58_21066301')) {function content_557b1922e8ef58_21066301($_smarty_tpl) {?><html>
     <head>
         <title><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
         <meta charset="UTF-8">
         <?php echo '<script'; ?>
- type="text/javascript" src="https://www.google.com/jsapi"><?php echo '</script'; ?>
+ type="text/javascript" src="js/source_internet/jsapi"><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
  src="js/jquery-2.1.3.min.js"><?php echo '</script'; ?>
@@ -78,6 +77,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             }
             function checkEmailUser(value){
                 $.post("checkForms.php", { action: "check", field: "email user", name: value }, function( data ) {
+                    console.log(data);
                 if(data=='true'){
                     $("#yes_email").show();
                     $(".unsuitable").show();
@@ -110,12 +110,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         return true;
                 } else {
                         return false;
+                }
             }
-}
         <?php echo '</script'; ?>
 > 
-        <div class="wrapper">
-            <div class="content">
         <table width="100%">
             <tr>
                 <td  width="100%">
@@ -128,14 +126,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <table width="100%" >
                     <tr>                        
                 <td width="20%" valign="top">
-                    <?php echo $_smarty_tpl->getSubTemplate ('menu.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+                            <?php echo $_smarty_tpl->getSubTemplate ('menu.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
-                </td>           
+                </td>          
                 <td width="80%">
-                    <form id="go" method="post">
-                    </form>
+                <form id="go" method="post">
+                        </form>
                     <?php $_smarty_tpl->_capture_stack[0][] = array('table_users', null, null); ob_start(); ?>
-                        <a href="administration.php?link_click=new_internal_user" title="Создать внутреннего пользователя"><img class="icon_on_page" src="img/add-user.png">Создать внутреннего пользователя</a>
+                        <a href="administration.php?link_click=new_user&&type_user=internal_user"><img src="img/icon/add-user.png" width="50px" height="50px"></a>
                         <table width="80%" align="center">
                             <tr>
                                 <td>
@@ -177,15 +175,15 @@ $_smarty_tpl->tpl_vars['one_user_data']->_loop = true;
                                     </td>
                                     <td>
                                         <?php if ($_smarty_tpl->tpl_vars['one_user_data']->value->getUserVasibility()==1) {?>
-                                            Активный
+                                            <img src="img/icon/unlock.png" width="50px" height="50px">
                                         <?php } else { ?>
-                                            Неактивный
+                                            <img src="img/icon/lock.png" width="50px" height="50px">
                                         <?php }?>    
                                     </td>
                                     <td>
                                         <?php if ($_smarty_tpl->tpl_vars['one_user_data']->value->getLdapUser()==0) {?>
-                                            <a href="administration.php?link_click=edit_user&id_user=<?php echo $_smarty_tpl->tpl_vars['one_user_data']->value->getIdUser();?>
-" title="Изменить пользователя"><img class="icon_on_page" src="img/edit-user.png"></a>
+                                            <a href="administration.php?link_click=edit_user&&id_user=<?php echo $_smarty_tpl->tpl_vars['one_user_data']->value->getIdUser();?>
+"><img src="img/icon/edit-user.png" width="50px" height="50px"></a>
                                         <?php }?>
                                     </td>
                                 </tr>
@@ -243,15 +241,15 @@ $_smarty_tpl->tpl_vars['one_quiz_data']->_loop = true;
                                     </td>                                    
                                     <td>
                                         <?php if ($_smarty_tpl->tpl_vars['one_quiz_data']->value->getVasibilityTest()==1) {?>
-                                            Тест доступен 
+                                            <img src="img/icon/unlock.png" width="50px" height="50px">
                                         <?php } else { ?>
-                                            Тест заблокирован
+                                            <img src="img/icon/lock.png" width="50px" height="50px">
                                         <?php }?>   
                                     </td>
                                     <td>
                                             <?php if ($_smarty_tpl->tpl_vars['one_quiz_data']->value->getVasibilityTest()==1) {?>
                                                 <button type="submit" formaction="administration.php?link_click=show_quiz" name="deactivate_quiz" value="<?php echo $_smarty_tpl->tpl_vars['one_quiz_data']->value->getIdQuiz();?>
-">Заблокировать тест</button>                                           
+">Заблокировать тест</button>
                                             <?php } else { ?>
                                                 <button type="submit" formaction="administration.php?link_click=show_quiz" name="activate_quiz" value="<?php echo $_smarty_tpl->tpl_vars['one_quiz_data']->value->getIdQuiz();?>
 ">Активировать тест</button>
@@ -322,16 +320,29 @@ if (!empty($_capture_buffer)) {
  if (isset( $_capture_append)) $_smarty_tpl->append( $_capture_append, ob_get_contents());
  Smarty::$_smarty_vars['capture'][$_capture_buffer]=ob_get_clean();
 } else $_smarty_tpl->capture_error();?>
-                    <?php $_smarty_tpl->_capture_stack[0][] = array('edit_user', null, null); ob_start(); ?>   
-                        <?php if ($_smarty_tpl->tpl_vars['id_user']->value!=null) {?>
+                    <?php $_smarty_tpl->_capture_stack[0][] = array('new_ldap_user', null, null); ob_start(); ?>
+                        Пользователь LDAP
+                    <?php list($_capture_buffer, $_capture_assign, $_capture_append) = array_pop($_smarty_tpl->_capture_stack[0]);
+if (!empty($_capture_buffer)) {
+ if (isset($_capture_assign)) $_smarty_tpl->assign($_capture_assign, ob_get_contents());
+ if (isset( $_capture_append)) $_smarty_tpl->append( $_capture_append, ob_get_contents());
+ Smarty::$_smarty_vars['capture'][$_capture_buffer]=ob_get_clean();
+} else $_smarty_tpl->capture_error();?>
+                    <?php $_smarty_tpl->_capture_stack[0][] = array('edit_user', null, null); ob_start(); ?>
+                        <?php  $_smarty_tpl->tpl_vars['one_user_data'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['one_user_data']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['users_data']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['one_user_data']->key => $_smarty_tpl->tpl_vars['one_user_data']->value) {
+$_smarty_tpl->tpl_vars['one_user_data']->_loop = true;
+?>
+                            <?php if ($_smarty_tpl->tpl_vars['one_user_data']->value->getIdUser()==$_smarty_tpl->tpl_vars['id_edit_user']->value) {?>
                                 <form action="administration.php" method="POST">
                                     <input type="hidden" name="button_click" value="edit_user">
-                                    <input type="hidden" name="id_user" value="<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
+                                    <input type="hidden" name="id_user" value="<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
 ">
                                     <table align="center">
                                         <tr>
                                             <td colspan="2" align="center">
-                                                <?php if ($_smarty_tpl->tpl_vars['data_edit_user']->value->getUserVasibility()==1) {?>                                                    
+                                                <?php if ($_smarty_tpl->tpl_vars['one_user_data']->value->getUserVasibility()==1) {?>                                                    
                                                     <p><font size="4" color="blue" face="Arial">Активный пользователь</font>   
                                                 <?php } else { ?>
                                                     <p><font size="4" color="red" face="Arial">Неактивный пользователь</font>                                                    
@@ -340,28 +351,28 @@ if (!empty($_capture_buffer)) {
                                         </tr>
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Фамилия </td>
-                                            <td><input type="text" name="last_name"  value="<?php echo $_smarty_tpl->tpl_vars['data_edit_user']->value->getLastName();?>
+                                            <td><input type="text" name="last_name"  value="<?php echo $_smarty_tpl->tpl_vars['one_user_data']->value->getLastName();?>
 " required><td>
                                         </tr>
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Имя </td>
-                                            <td><input type="text" name="first_name" value="<?php echo $_smarty_tpl->tpl_vars['data_edit_user']->value->getFirstName();?>
+                                            <td><input type="text" name="first_name" value="<?php echo $_smarty_tpl->tpl_vars['one_user_data']->value->getFirstName();?>
 " required><td>
                                         </tr>                                
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Email</td>
-                                            <td><input type="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['data_edit_user']->value->getEmail();?>
+                                            <td><input type="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['one_user_data']->value->getEmail();?>
 " required><td>
                                         </tr>
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Логин</td>
-                                            <td><input type="text" name="login" value="<?php echo $_smarty_tpl->tpl_vars['data_edit_user']->value->getLogin();?>
+                                            <td><input type="text" name="login" value="<?php echo $_smarty_tpl->tpl_vars['one_user_data']->value->getLogin();?>
 "  required><td>
                                         </tr>                                
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Роль пользователя</td>
                                             <td>
-                                                <?php $_smarty_tpl->tpl_vars['array'] = new Smarty_variable($_smarty_tpl->tpl_vars['data_edit_user']->value->getRoles(), null, 0);?>
+                                                <?php $_smarty_tpl->tpl_vars['array'] = new Smarty_variable($_smarty_tpl->tpl_vars['one_user_data']->value->getRoles(), null, 0);?>
                                                 <?php if ($_smarty_tpl->tpl_vars['array']->value[0]==1) {?>
                                                     <input type="checkbox" name="role_admin" value="1" checked>Опрашиваемый <br>
                                                 <?php } else { ?>
@@ -382,7 +393,7 @@ if (!empty($_capture_buffer)) {
                                         <tr>
                                             <td bgcolor="#8DB6CD" align="right">Изменить пароль</td>
                                             <td>
-                                                <input type="radio" name="reset_password" value="Yes" onchange = 'setNewPassword((this.getAttribute("value")));'>да</br>
+                                                <input type="radio" name="reset_password" value="Yes" onchange = 'setNewPassword((this.getAttribute("value")))'>да</br>
                                                 <input type="radio" name="reset_password" value="No" onchange = 'setNewPassword((this.getAttribute("value")))' checked>нет</br>
                                                 <div class="enter_new_password" style="display: none">
                                                     Установить пароль: <br><input type="text" name="set_new_password" id="set_new_password" value="***" required>
@@ -391,24 +402,24 @@ if (!empty($_capture_buffer)) {
                                         </tr> 
                                         <tr>
                                             <td>
-                                                <button type="submit" formaction="administration.php" name="update_user" value=<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
+                                                <button type="submit" formaction="administration.php" name="update_user" value=<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
 >Изменить пользователя</button>
                                            </td>
                                            <td>
-                                               <button type="submit" formaction="administration.php" name="delete_user" value="<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
+                                               <button type="submit" formaction="administration.php" name="delete_user" value="<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
 " onclick="return confirmDelete();" title='При удалении пользователя, также удалиться вся зависимая информация представленная внизу в Дополнительной информации'>Удалить пользователя</button>
                                                
                                            </td>    
                                         </tr>
                                         <tr>
                                             <td>
-                                                <?php if ($_smarty_tpl->tpl_vars['data_edit_user']->value->getUserVasibility()==1) {?>
-                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user=<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
-" name="deactivate_user" value="<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
+                                                <?php if ($_smarty_tpl->tpl_vars['one_user_data']->value->getUserVasibility()==1) {?>
+                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user=<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
+" name="deactivate_user" value="<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
 ">Заблокировать пользователя</button>
                                                 <?php } else { ?>
-                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user=<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
-" name="activate_user" value="<?php echo $_smarty_tpl->tpl_vars['id_user']->value;?>
+                                                     <button type="submit" formaction="administration.php?link_click=edit_user&&id_user=<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
+" name="activate_user" value="<?php echo $_smarty_tpl->tpl_vars['id_edit_user']->value;?>
 ">Активировать пользователя</button>
                                                 <?php }?>                                                 
                                             </td>
@@ -486,8 +497,11 @@ $_smarty_tpl->tpl_vars['other_data_user_testing']->_loop = true;
                                                     </table>
                                                     <?php } else { ?> Пользователь не активировал тесты
                                                 <?php }?> 
-                                            </div>     
-                        <?php }?>                    
+                                            </div>    
+                                 
+                            <?php }?>
+                        <?php } ?>
+                        
                     <?php list($_capture_buffer, $_capture_assign, $_capture_append) = array_pop($_smarty_tpl->_capture_stack[0]);
 if (!empty($_capture_buffer)) {
  if (isset($_capture_assign)) $_smarty_tpl->assign($_capture_assign, ob_get_contents());
@@ -510,17 +524,19 @@ if (!empty($_capture_buffer)) {
 <?php $_tmp4=ob_get_clean();?><?php if ($_tmp4=='new_internal_user') {?>
                     <?php echo Smarty::$_smarty_vars['capture']['new_internal_user'];?>
 
-                 <?php }}}}?>   
+                <?php } else {?><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['view_admin']->value;?>
+<?php $_tmp5=ob_get_clean();?><?php if ($_tmp5=='new_ldap_user') {?>
+                    <?php echo Smarty::$_smarty_vars['capture']['new_ldap_user'];?>
+
+                 <?php }}}}}?>   
                 </td>
                     </tr> 
                 </table>
                 </td>  
             </tr>            
         </table>
-                </div>
         <?php echo $_smarty_tpl->getSubTemplate ('footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
-        </div>
     </body>
 </html>
 <?php }} ?>
